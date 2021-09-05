@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :link do
-    original { "MyText" }
-    shortned { "MyText" }
+    original { 'https://test.test' }
+    shortned { '' }
   end
 end
