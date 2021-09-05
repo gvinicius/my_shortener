@@ -36,5 +36,16 @@ module MyShortener
     # Middleware like session, flash, cookies can be added back manually.
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = true
+
+    config.factory_bot.definition_file_paths = ['custom/factories']
+
+    config.generators do |g|
+      g.test_framework :rspec
+      g.helper_specs false
+      g.controller_specs true
+      g.view_specs false
+      g.routing_specs false
+      g.request_specs false
+    end
   end
 end
