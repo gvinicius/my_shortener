@@ -32,8 +32,6 @@ module MyShortener
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
 
-    config.factory_bot.definition_file_paths = ['custom/factories']
-
     config.generators do |g|
       g.test_framework :rspec
       g.helper_specs false
