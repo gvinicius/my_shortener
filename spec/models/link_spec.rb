@@ -14,6 +14,10 @@ describe Link do
   end
 
   context 'when creating a link' do
+    it { is_expected.to respond_to(:original) }
+    it { is_expected.to respond_to(:shortned) }
+    it { is_expected.to respond_to(:access_count) }
+
     it 'is invalid without an original value' do
       link.original = empty_url
 
@@ -86,6 +90,15 @@ describe Link do
 
         expect(link.shortned).to_not eq(another_link.shortned)
       end
+    end
+  end
+
+  describe '#increment_access_count' do
+    let(:link) { create(:link, original: valid_original_url, shortned: valid_shortned_url) }
+
+    it 'increments the count' do
+
+      expect { link.increment_access_count }.to change { link.access_count }.from(0).to(1)
     end
   end
 end

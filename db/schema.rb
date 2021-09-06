@@ -10,16 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_05_200843) do
-
+ActiveRecord::Schema.define(version: 20_210_905_230_451) do
   # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
+  enable_extension 'plpgsql'
 
-  create_table "links", force: :cascade do |t|
-    t.text "original"
-    t.text "shortned"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+  create_table 'links', force: :cascade do |t|
+    t.text 'original'
+    t.text 'shortned'
+    t.datetime 'created_at', precision: 6, null: false
+    t.datetime 'updated_at', precision: 6, null: false
+    t.integer 'access_count', default: 0
   end
-
 end
