@@ -20,7 +20,9 @@ class LinksController < ApplicationController
 
   # POST /links or /links.json
   def create
-    @link = Link.new(link_params)
+    link_params.delete(:id)
+    current_user_pair = { user_id: current_user.try(:id) }
+    @link = Link.new(link_params.merge(current_user_pair))
 
     respond_to do |format|
       if @link.save
@@ -37,11 +39,11 @@ class LinksController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_link
-    @link = Link.where(id: params[:id]).first || Link.find_by_shortned(Link.prepare_url(params[:path]))
+    @link = Link.find(params[:id])
   end
 
   # Only allow a list of trusted parameters through.
   def link_params
-    params.require(:link).permit(:original)
+    params.require(:link).permit(:original, :id)
   end
 end

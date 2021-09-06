@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe Link do
+RSpec.describe Link, type: :model do
   let(:link) do
     build(:link)
   end
@@ -14,9 +14,11 @@ describe Link do
   end
 
   context 'when creating a link' do
+    let(:some_user_id) { 1 }
     it { is_expected.to respond_to(:original) }
     it { is_expected.to respond_to(:shortned) }
     it { is_expected.to respond_to(:access_count) }
+    it { is_expected.to respond_to(:user_id) }
 
     it 'is invalid without an original value' do
       link.original = empty_url
@@ -50,6 +52,18 @@ describe Link do
 
       expect(link).to be_valid
     end
+
+    it 'is valid with no user associated' do
+      link.user_id = nil
+
+      expect(link.errors.details[:user_id]).to be_empty
+    end
+
+    it 'is valid with a user associated' do
+      link.user_id = some_user_id
+
+      expect(link.errors.details[:user_id]).to be_empty
+    end
   end
 
   describe '#generate_shortned' do
@@ -60,8 +74,16 @@ describe Link do
       expect(link.errors.details[:shortned]).to be_empty
     end
 
-    it 'runs about to save' do
+    it 'runs about to save and it is a new entry' do
       expect(link).to receive(:generate_shortned)
+      link.shortned = ''
+      link.original = valid_original_url
+
+      link.save
+    end
+
+    it 'does not run about to save because it is not a new entry' do
+      expect(link).to_not receive(:generate_shortned)
       link.original = valid_original_url
 
       link.save
@@ -97,7 +119,6 @@ describe Link do
     let(:link) { create(:link, original: valid_original_url, shortned: valid_shortned_url) }
 
     it 'increments the count' do
-
       expect { link.increment_access_count }.to change { link.access_count }.from(0).to(1)
     end
   end

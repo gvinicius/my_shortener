@@ -25,7 +25,7 @@ RSpec.describe LinksController, type: :controller do
     let!(:old_access_count) { link.access_count }
 
     before do
-      get :show, params: { path: URI::parse(link.shortned).path.tr('/', '') }, session: valid_session
+      get :show, params: { id: link.to_param }, session: valid_session
     end
 
     it 'returns a retirect status code' do
@@ -39,6 +39,7 @@ RSpec.describe LinksController, type: :controller do
     it 'increments the access_count' do
       link.reload
       new_count = old_access_count + 1
+
       expect(new_count).to eq(link.access_count)
     end
   end
@@ -61,6 +62,24 @@ RSpec.describe LinksController, type: :controller do
       it 'redirects to the created link' do
         post :create, params: { link: valid_attributes }, session: valid_session
         expect(response).to redirect_to(Link.last)
+      end
+
+      it 'sets no user id without being authenticated' do
+        post :create, params: { link: valid_attributes }, session: valid_session
+        expect(Link.last.user_id).to eq(nil)
+      end
+
+      context 'with a logged in user' do
+        let(:user) { create(:user) }
+
+        before do
+          sign_in(user)
+        end
+
+        it 'sets the correct user id after being authenticated' do
+          post :create, params: { link: valid_attributes }, session: valid_session
+          expect(Link.last.user_id).to eq(user.id)
+        end
       end
     end
 

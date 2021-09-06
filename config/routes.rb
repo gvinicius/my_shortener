@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
+  devise_for :users
   resources :links
 
   root 'links#index'
 
-  match '*path' => 'links#show', via: :get
+  match 'links/:id' => 'links#show', via: :get
+  match '/:path' => 'application#redirect_shortned', via: :get, as: :fallback
 end
