@@ -14,12 +14,18 @@ class Link < ApplicationRecord
     update(access_count: access_count + 1)
   end
 
+  def username
+    user.try(:username)
+  end
+
   def self.prepare_url(suffix)
     port = Rails.application.routes.default_url_options[:port]
     Rails.application.routes.default_url_options[:host] +
       (port.present? ? ':' + port : '') +
       + '/' + suffix
   end
+
+  scope :ordered_by_date, -> { order(created_at: :desc) }
 
   private
 

@@ -21,36 +21,6 @@ RSpec.describe Api::V1::LinksController, type: :controller do
     end
   end
 
-  describe 'GET #show' do
-    let!(:old_access_count) { link.access_count }
-
-    before do
-      get :show, params: { id: link.to_param }, session: valid_session
-    end
-
-    it 'returns a retirect status code' do
-      expect(response.code).to eq('302')
-    end
-
-    it 'returns a redirect response' do
-      expect(response).to redirect_to(link.original)
-    end
-
-    it 'increments the access_count' do
-      link.reload
-      new_count = old_access_count + 1
-
-      expect(new_count).to eq(link.access_count)
-    end
-  end
-
-  describe 'GET #new' do
-    it 'returns a success response' do
-      get :new, params: {}, session: valid_session
-      expect(response).to be_successful
-    end
-  end
-
   describe 'POST #create' do
     context 'with valid params' do
       it 'creates a new Link' do
@@ -61,7 +31,7 @@ RSpec.describe Api::V1::LinksController, type: :controller do
 
       it 'redirects to the created link' do
         post :create, params: { link: valid_attributes }, session: valid_session
-        expect(response).to redirect_to(api_v1_link_url(Link.last))
+        expect(response.code).to eq('201')
       end
 
       it 'sets no user id without being authenticated' do
