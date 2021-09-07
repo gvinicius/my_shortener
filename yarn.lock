@@ -2630,6 +2630,11 @@ cyclist@^1.0.1:
   resolved "https://registry.yarnpkg.com/cyclist/-/cyclist-1.0.1.tgz#596e9698fd0c80e12038c2b82d6eb1b35b6224d9"
   integrity sha1-WW6WmP0MgOEgOMK4LW6xs1tiJNk=
 
+daemonite-material@^4.1.1:
+  version "4.1.1"
+  resolved "https://registry.yarnpkg.com/daemonite-material/-/daemonite-material-4.1.1.tgz#8a08ddf0e3067a464426f2e996d669cc9be2d947"
+  integrity sha512-nVndyv5KzxxGOnU+JbYJd+6zTdYtcmQPMKp91X6nEAiBSAJdXh2bv933AhVuP53QxYhpHfcc4CN5Zc6kb6C0wg==
+
 date-fns@2.0.0-alpha.27:
   version "2.0.0-alpha.27"
   resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-2.0.0-alpha.27.tgz#5ecd4204ef0e7064264039570f6e8afbc014481c"

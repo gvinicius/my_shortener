@@ -5,4 +5,14 @@
 
 import Rails from "@rails/ujs"
 
+import 'daemonite-material/js/material';
+
+$(document).on('turbolinks:load', function() {
+  $(
+    '.floating-label .custom-select, .floating-label .form-control',
+  ).floatinglabel();
+
+  // ...
+});
+
 Rails.start()

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Link < ApplicationRecord
   ALPHANUMERIC_LENGTH = 6
   NUMBER_LENGTH = 1
@@ -21,7 +23,7 @@ class Link < ApplicationRecord
   def self.prepare_url(suffix)
     port = Rails.application.routes.default_url_options[:port]
     Rails.application.routes.default_url_options[:host] +
-      (port.present? ? ':' + port : '') +
+      (port.present? ? ":#{port}" : '') +
       + '/' + suffix
   end
 
