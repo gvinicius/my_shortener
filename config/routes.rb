@@ -1,9 +1,14 @@
 Rails.application.routes.draw do
   devise_for :users
-  resources :links
+  namespace :api do
+    namespace :v1 do
+      resources :links
+    end
+  end
 
-  root 'links#index'
-
+  root :to => 'home#landing'
+  get 'home/landing'
+  get 'home/redirect_shortned'
   match 'links/:id' => 'links#show', via: :get
-  match '/:path' => 'application#redirect_shortned', via: :get, as: :fallback
+  match '/:path' => 'home#redirect_shortned', via: :get, as: :fallback
 end

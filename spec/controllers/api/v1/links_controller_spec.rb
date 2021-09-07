@@ -1,6 +1,6 @@
 require 'rails_helper'
-j
-RSpec.describe LinksController, type: :controller do
+
+RSpec.describe Api::V1::LinksController, type: :controller do
   let(:valid_original_url) { 'https://gapfish.com' }
   let(:invalid_url) { 'zzz://localhost:4567/' }
   let(:valid_attributes) do
@@ -61,7 +61,7 @@ RSpec.describe LinksController, type: :controller do
 
       it 'redirects to the created link' do
         post :create, params: { link: valid_attributes }, session: valid_session
-        expect(response).to redirect_to(Link.last)
+        expect(response).to redirect_to(api_v1_link_url(Link.last))
       end
 
       it 'sets no user id without being authenticated' do

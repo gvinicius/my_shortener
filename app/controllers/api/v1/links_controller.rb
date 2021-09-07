@@ -1,4 +1,4 @@
-class LinksController < ApplicationController
+class Api::V1::LinksController < ApiController
   before_action :set_link, only: %i[show]
 
   # GET /links or /links.json
@@ -26,7 +26,7 @@ class LinksController < ApplicationController
 
     respond_to do |format|
       if @link.save
-        format.html { redirect_to @link, notice: 'Link was successfully created.' }
+        format.html { redirect_to api_v1_link_url(@link), notice: 'Link was successfully created.' }
         format.json { render :show, status: :created, location: @link }
       else
         format.html { render :new, status: :unprocessable_entity }
