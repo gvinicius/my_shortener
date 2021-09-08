@@ -12,6 +12,9 @@ module Api
 
       # GET /links/1 or /links/1.json
       def show
+        # Dismiss if nothing is there
+        render json: {}, status: :ok unless @link.present?
+
         @link.increment_access_count
 
         redirect_to(@link.original)
