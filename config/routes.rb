@@ -17,5 +17,6 @@ Rails.application.routes.draw do
   get 'home/redirect_shortened'
   match 'links/:id' => 'links#show', via: :get
   get 'service-worker(.format)', to: 'home#service_worker'
+  get 'favicon', to: 'home#favicon'
   match '/:path' => 'home#redirect_shortened', via: :get, as: :fallback
 end

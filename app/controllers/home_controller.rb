@@ -8,6 +8,7 @@ class HomeController < ApplicationController
   end
 
   def landing; end
+  def favicon; end
 
   def service_worker; end
 end
