@@ -14,7 +14,8 @@ Rails.application.routes.draw do
 
   root to: 'home#landing'
   get 'home/landing'
-  get 'home/redirect_shortned'
+  get 'home/redirect_shortened'
   match 'links/:id' => 'links#show', via: :get
-  match '/:path' => 'home#redirect_shortned', via: :get, as: :fallback
+  get 'service-worker(.format)', to: 'home#service_worker'
+  match '/:path' => 'home#redirect_shortened', via: :get, as: :fallback
 end

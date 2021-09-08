@@ -5,14 +5,10 @@
 
 import Rails from "@rails/ujs"
 
-import 'daemonite-material/js/material';
+import I18n from 'i18n-js/index.js.erb'
+window.i18n = I18n;
 
-$(document).on('turbolinks:load', function() {
-  $(
-    '.floating-label .custom-select, .floating-label .form-control',
-  ).floatinglabel();
-
-  // ...
-});
+let Turbolinks = require("turbolinks");
+Turbolinks.start();
 
 Rails.start()

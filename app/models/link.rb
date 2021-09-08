@@ -2,14 +2,14 @@
 
 class Link < ApplicationRecord
   ALPHANUMERIC_LENGTH = 6
-  NUMBER_LENGTH = 1
+  NUMBER_LENGTH = 10
 
-  validates :original, :shortned, url: { allow_nil: false }
-  validates :shortned, uniqueness: true
+  validates :original, :shortened, url: { allow_nil: false }
+  validates :shortened, uniqueness: true
   # The following validation allows that preset values can be populated from a seeds file.
-  before_validation :generate_shortned, unless: lambda {
-                                                  id.present? || (shortned.present? && !self.class.exists?(shortned: shortned))
-                                                }
+  before_validation :generate_shortened, unless: lambda {
+                                                   id.present? || (shortened.present? && !self.class.exists?(shortened: shortened))
+                                                 }
   belongs_to :user, optional: true
 
   def increment_access_count
@@ -31,8 +31,8 @@ class Link < ApplicationRecord
 
   private
 
-  def generate_shortned
-    self.shortned = self.class.prepare_url(SecureRandom.alphanumeric(ALPHANUMERIC_LENGTH) +
+  def generate_shortened
+    self.shortened = self.class.prepare_url(SecureRandom.alphanumeric(ALPHANUMERIC_LENGTH) +
                     SecureRandom.random_number(NUMBER_LENGTH).to_s)
   end
 end
