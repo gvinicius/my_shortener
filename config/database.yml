@@ -91,5 +91,3 @@ test:
 production:
   <<: *default
   database: my_shortener_production
-  username: my_shortener
-  password: <%= ENV['MY_SHORTENER_DATABASE_PASSWORD'] %>
