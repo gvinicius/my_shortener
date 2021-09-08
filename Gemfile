@@ -3,7 +3,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '3.0.1'
+ruby '3.0.2'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.1.0'
@@ -28,6 +28,8 @@ gem 'jbuilder', '~> 2.7'
 # gem 'image_processing', '~> 1.2'
 
 gem 'devise', '~> 4.8.0'
+gem 'emoji_flag'
+gem 'i18n-js'
 gem 'validate_url', '~> 1.0.13'
 
 group :development, :test do
@@ -42,6 +44,7 @@ group :development, :test do
   gem 'rspec-rails', '~> 5.0.0'
   gem 'rubocop', require: false
   gem 'rubocop-rails', require: false
+  gem 'rubocop-rspec', require: false
   gem 'zapata'
 end
 

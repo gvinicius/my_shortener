@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import ReactDOM from 'react-dom'
-import PropTypes from 'prop-types'
 import MaterialTable from 'material-table';
 
 import TablePagination from '@material-ui/core/TablePagination';
@@ -9,15 +8,18 @@ import Button from '@material-ui/core/Button';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
+import Snackbar from '@material-ui/core/Snackbar';
+import Alert from '@material-ui/lab/Alert';
 
-const Links = () => {
-  const [links, setLinks] = useState();
+const Landing = () => {
+  const [links, setLanding] = useState([]);
   const [original, setOriginal] = useState('');
+  const [requestResult, setRequestResult] = useState();
   const url = 'api/v1/links';
 
   const csrf = document.querySelector("meta[name='csrf-token']").getAttribute("content");
 
-  function retrieveLinks() {
+  function retrieveLanding() {
     fetch(url)
       .then((data) => {
         if (data.ok) {
@@ -26,14 +28,18 @@ const Links = () => {
         throw new Error("Network error.");
       })
       .then((data) => {
-        setLinks(data);
+        setLanding(data);
       })
       .catch((err) => message.error("Error: " + err));
   }
 
   useEffect(() => {
-    retrieveLinks();
+    retrieveLanding();
   }, [original]);
+
+  const handleClose = () => {
+    setRequestResult();
+  };
 
   function createLink() {
     fetch(url, {
@@ -45,15 +51,8 @@ const Links = () => {
       body: JSON.stringify({
         'original': original
       })
-    })
-      .then((response) => {
-        if(!response.ok) throw new Error(response.status);
-        else retrieveLinks;
-      })
-      .catch((error) => {
-        console.log('error: ' + error);
-      });
-
+    }).then(response=>response.json())
+      .then(data=>{ setRequestResult(data.original[0]); })
     ;
   }
 
@@ -63,18 +62,23 @@ const Links = () => {
         <AppBar position="static">
           <Toolbar variant="dense">
             <Typography variant="h6" color="inherit">
-              My Shortner
+              My Shortener
             </Typography>
           </Toolbar>
         </AppBar>
-        <Input value={original} defaultValue={original} placeholder='Insert a URL to get a shortned version' inputProps={{ 'aria-label': 'Insert a URL to get a shortned version' }} fullWidth={true} onChange={(value) => { value.target.value && setOriginal(value.target.value) }}/>
+        <Input value={original} placeholder='Insert a valid URL to get a shortened version' inputProps={{ 'aria-label': 'Insert a valid URL to get a shortened version' }} fullWidth={true} onChange={(value) => { value.target.value && setOriginal(value.target.value) }}/>
         <Button variant="contained" color="primary" disableElevation label="Short" onClick={({ message }) => {
           createLink();
           setOriginal('');
         }}> Short </Button>
+        <Snackbar open={requestResult !== undefined} autoHideDuration={6000} onClose={handleClose}>
+          <Alert onClose={handleClose} severity={(requestResult || '').includes('not') ? 'error' : 'success'} >
+            {requestResult === 'h' ? 'Ok' : requestResult}
+          </Alert>
+        </Snackbar>
       </div>
       <div style={{ maxWidth: "100%" }}>
-        {links && <MaterialTable
+        <MaterialTable
           options={{
             pageSize: 20,
             selection: false,
@@ -93,13 +97,13 @@ const Links = () => {
           }}
 
           columns={[
-            { title: "Original", field: "original" },
-            { title: "Shortned", field: "shortned", render: ({ shortned }) =>  <a href={shortned}>{shortned}</a> },
+            { title: window.i18n.t('home'), field: "original" },
+            { title: "Shortened", field: "shortened", render: ({ shortened }) =>  <a href={shortened}>{shortened}</a> },
             { title: "Count", field: "access_count" },
             { title: "User who set it", field: "username" },
           ]}
           data={links}
-          title="Links"
+          title="Landing"
           components={{
             Pagination: (props) => {
               return (
@@ -113,26 +117,27 @@ const Links = () => {
                   page={props.page}
                   rowsPerPage={props.rowsPerPage}
                   rowsPerPageOptions={props.rowsPerPageOptions}
-                  onChangePage={props.onChangePage}
-                  onChangeRowsPerPage={props.onChangeRowsPerPage}
+                  onPageChange={props.onPageChange}
+                  onChangePage={props.onPageChange}
+                  onChangeRowsPerPage={props.onRowsPerPageChange}
+                  onRowsPerPageChange={props.onRowsPerPageChange}
 
                 />
               )
             }
           }}
-        />}
+        />
       </div>
     </div>
   )}
 
 
-Links.propTypes = {
-  name: PropTypes.string
+Landing.propTypes = {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
   ReactDOM.render(
-    <Links name="React" />,
+    <Landing name="React" />,
     document.body.appendChild(document.createElement('div')),
   )
 })

@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 20_210_907_054_004) do
 
   create_table 'links', force: :cascade do |t|
     t.text 'original'
-    t.text 'shortned'
+    t.text 'shortened'
     t.datetime 'created_at', precision: 6, null: false
     t.datetime 'updated_at', precision: 6, null: false
     t.integer 'access_count', default: 0

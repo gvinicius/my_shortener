@@ -5,21 +5,22 @@ require 'rails_helper'
 RSpec.describe 'Redirections', type: :request do
   let(:valid_original_url) { 'https://gapfish.com' }
   let(:valid_attributes) do
-    { original: valid_original_url, shortned: '' }
+    { original: valid_original_url, shortened: '' }
   end
   let(:link) { create(:link, valid_attributes) }
 
-  describe 'a call to the shortned link redirects to the original one' do
+  describe 'a call to the shortened link redirects to the original one' do
     before do
-      get link.shortned
+      get link.shortened
     end
 
     it 'for new certification form' do
-      expect(response).to redirect_to("#{api_v1_links_url}/#{link.id}")
+      # Removing the default parameter from the api v1 links url
+      expect(response).to redirect_to("#{api_v1_links_url.gsub('?locale=en', '')}/#{link.id}?locale=en")
     end
   end
 
-  describe 'a call to the shortned link redirects to the original one' do
+  describe 'a call to the shortened link redirects to the original one' do
     let!(:old_access_count) { link.access_count }
     before do
       get "#{api_v1_links_url}/#{link.id}"
