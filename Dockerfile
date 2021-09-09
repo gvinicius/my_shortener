@@ -2,7 +2,7 @@ FROM ruby:3.0.2
 # Install node 14-LTS and yarn
 RUN curl -sL https://deb.nodesource.com/setup_14.x | bash -
 RUN apt-get update -qq && apt-get install -qq --no-install-recommends \
-    nodejs libpq-dev  \
+    nodejs libpq-dev postgresql postgresql-contrib \
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/*
 RUN npm install -g yarn@1
@@ -30,6 +30,9 @@ RUN ls
 RUN pwd
 RUN rm -Rf config/master.key
 RUN rm -Rf config/credentials.yml.enc
+RUN su postgres
+RUN psql -c "alter user postgres with password '1234'"
+RUN su -
 EXPOSE 8080
 EXPOSE 5432
 
