@@ -6,8 +6,6 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'landing' %>
   </head>
 
   <body>
@@ -20,15 +18,8 @@
         <%= link_to t(".sign_in"), new_user_session_path, locale: I18n.locale %> |
         <%= link_to t(".sign_up"), new_user_registration_path, locale: I18n.locale %> |
       <% end %>
-        <%= link_to EmojiFlag.new(:en), '/?locale=en' %> |
-        <%= link_to EmojiFlag.new(:de), '/?locale=de' %> |
     </div>
     <%= yield %>
 
-    <script type="text/javascript">
-      if(window.i18n !== undefined) {
-        window.i18n.locale = "<%= I18n.locale %>";
-      }
-    </script>
   </body>
 </html>

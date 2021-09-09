@@ -97,9 +97,10 @@ const Landing = () => {
           }}
 
           columns={[
-            { title: window.i18n.t('home'), field: "original" },
+            { title: "URL", field: "original" },
             { title: "Shortened", field: "shortened", render: ({ shortened }) =>  <a href={shortened}>{shortened}</a> },
-            { title: "Count", field: "access_count" },
+            { title: "Avg Access per Month", field: "frequency" },
+            { title: "Last Access", field: "updated_at" },
             { title: "User who set it", field: "username" },
           ]}
           data={links}

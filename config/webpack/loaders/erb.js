@@ -1,16 +1,15 @@
 module.exports = {
   test: /\.erb$/,
-  enforce: "pre",
+  enforce: 'pre',
   exclude: /node_modules/,
-
   use: [{
-    loader: "rails-erb-loader",
+    loader: 'rails-erb-loader',
     options: {
-      runner: (/^win/.test(process.platform) ? "ruby " : "") + "bin/rails runner",
-      env: {
+      runner: (/^win/.test(process.platform) ? 'ruby ' : '') + 'bin/rails runner',
+      env:        {
         ...process.env,
         DISABLE_SPRING: 1,
       },
-    },
-  }],
+    }
+  }]
 }

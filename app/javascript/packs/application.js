@@ -3,12 +3,9 @@
 // a relevant structure within app/javascript and only use these pack files to reference
 // that code so it'll be compiled.
 
-import Rails from "@rails/ujs"
+//import Rails from "@rails/ujs"
 
-import I18n from 'i18n-js/index.js.erb'
-window.i18n = I18n;
+//let Turbolinks = require("turbolinks");
+//Turbolinks.start();
 
-let Turbolinks = require("turbolinks");
-Turbolinks.start();
-
-Rails.start()
+//Rails.start()

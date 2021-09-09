@@ -7,7 +7,7 @@ module Api
 
       # GET /links or /links.json
       def index
-        @links = current_user.present? ? current_user.links : Link.ordered_by_date
+        @links = current_user.present? ? Link.ordered_by_date.where(user_id: current_user.id) : Link.ordered_by_date
       end
 
       # GET /links/1 or /links/1.json

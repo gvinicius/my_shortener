@@ -27,6 +27,12 @@ class Link < ApplicationRecord
       + '/' + suffix
   end
 
+  def frequency
+    date1 = Time.zone.now
+    date2 = self.created_at
+    access_count / ((1 + date2.year * 12 + date2.month) - (date1.year * 12 + date1.month))
+  end
+
   scope :ordered_by_date, -> { order(created_at: :desc) }
 
   private
