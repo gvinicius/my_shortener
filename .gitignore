@@ -35,3 +35,6 @@ public/packs
 /yarn-error.log
 yarn-debug.log*
 .yarn-integrity
+public/packs-test/
+public/javascripts/
+public/assets
