@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe Api::V1::LinksController, type: :controller do
-  let(:valid_original_url) { 'https://gapfish.com' }
+  let(:valid_original_url) { 'https://vinicode.xyz' }
   let(:invalid_url) { 'zzz://localhost:4567/' }
   let(:valid_attributes) do
     { original: valid_original_url }

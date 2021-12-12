@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Redirections', type: :request do
-  let(:valid_original_url) { 'https://gapfish.com' }
+  let(:valid_original_url) { 'https://vinicode.xyz' }
   let(:valid_attributes) do
     { original: valid_original_url, shortened: '' }
   end

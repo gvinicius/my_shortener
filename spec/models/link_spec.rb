@@ -10,7 +10,7 @@ RSpec.describe Link, type: :model do
   let(:valid_suffix) { 'guhaig' }
   let(:valid_number_to_be_appended) { '9' }
   let(:invalid_url) { 'zzz://localhost:4567/' }
-  let(:valid_original_url) { 'https://gapfish.com' }
+  let(:valid_original_url) { 'https://vinicode.xyz' }
   let(:valid_shortened_url) do
     "https://localhost:4567/#{valid_suffix}#{valid_number_to_be_appended}"
   end
