@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import ReactDOM from 'react-dom'
-import MaterialTable from 'material-table';
+import MaterialTable from 'material-table-jspdf-fix';
 
 import TablePagination from '@material-ui/core/TablePagination';
 import Input from '@material-ui/core/Input';

@@ -2055,7 +2055,7 @@ dom-helpers@^5.0.1:
     "@babel/runtime" "^7.8.7"
     csstype "^3.0.2"
 
-dompurify@^2.0.12, dompurify@^2.2.0:
+dompurify@^2.2.0:
   version "2.3.4"
   resolved "https://registry.yarnpkg.com/dompurify/-/dompurify-2.3.4.tgz#1cf5cf0105ccb4debdf6db162525bd41e6ddacc6"
   integrity sha512-6BVcgOAVFXjI0JTjEvZy901Rghm+7fDQOrNIcxB4+gdhj6Kwp6T9VBhBY/AbagKHJocRkDYGd6wvI+p4/10xtQ==
@@ -2808,19 +2808,6 @@ jspdf-autotable@3.5.9:
   resolved "https://registry.yarnpkg.com/jspdf-autotable/-/jspdf-autotable-3.5.9.tgz#8a625ef2aead44271da95e9f649843c401536925"
   integrity sha512-ZRfiI5P7leJuWmvC0jGVXu227m68C2Jfz1dkDckshmDYDeVFCGxwIBYdCUXJ8Eb2CyFQC2ok82fEWO+xRDovDQ==
 
-jspdf@2.1.0:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/jspdf/-/jspdf-2.1.0.tgz#2322f8644bc41845b3abe20db4c3ca0adeadb84c"
-  integrity sha512-NQygqZEKhSw+nExySJxB72Ge/027YEyIM450Vh/hgay/H9cgZNnkXXOQPRspe9EuCW4sq92zg8hpAXyyBdnaIQ==
-  dependencies:
-    atob "^2.1.2"
-    btoa "^1.2.1"
-  optionalDependencies:
-    canvg "^3.0.6"
-    core-js "^3.6.0"
-    dompurify "^2.0.12"
-    html2canvas "^1.0.0-rc.5"
-
 jspdf@^2.3.1:
   version "2.4.0"
   resolved "https://registry.yarnpkg.com/jspdf/-/jspdf-2.4.0.tgz#53d6d2acc63203b0b3688949597dd11a633b1db5"
@@ -2978,10 +2965,10 @@ make-dir@^3.0.2, make-dir@^3.1.0:
   dependencies:
     semver "^6.0.0"
 
-material-table@^1.69.3:
-  version "1.69.3"
-  resolved "https://registry.yarnpkg.com/material-table/-/material-table-1.69.3.tgz#3f282cffecf5461985965cd4a516bebb8069bf2d"
-  integrity sha512-UT/eQbUqfAg6XstcnM8dOQNgWmWbH5tbRmwqfGfPKQUQQXq/jb1z2spFHXPJBhEZFmk+Q95HlopiE6nAHymLMw==
+material-table-jspdf-fix@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/material-table-jspdf-fix/-/material-table-jspdf-fix-1.0.2.tgz#b5f1f4ca745123e00c74197dc874ef5e35c9b26e"
+  integrity sha512-nw/M3LkIeJ06wCAOw+IWwt9h5/p7FMWNSV5P0lLzvkF++jDc27yZ1ptsLQGgpWY+WwECa/2AjVez6O9+xgwOOA==
   dependencies:
     "@date-io/date-fns" "1.1.0"
     "@material-ui/pickers" "3.2.2"
@@ -2990,7 +2977,7 @@ material-table@^1.69.3:
     debounce "1.2.0"
     fast-deep-equal "2.0.1"
     filefy "0.1.10"
-    jspdf "2.1.0"
+    jspdf "^2.3.1"
     jspdf-autotable "3.5.9"
     prop-types "15.6.2"
     react-beautiful-dnd "13.0.0"
