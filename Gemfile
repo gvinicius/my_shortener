@@ -3,7 +3,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '3.0.2'
+ruby '3.0.1'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.1.0'
@@ -32,6 +32,7 @@ gem 'devise', '~> 4.8.0'
 gem 'emoji_flag'
 gem 'i18n-js'
 gem 'validate_url', '~> 1.0.13'
+gem 'nokogiri', '>= 1.12.5'
 
 group :development, :test do
   # Reduces boot times through caching; required in config/boot.rb
